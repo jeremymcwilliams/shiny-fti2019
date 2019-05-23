@@ -311,7 +311,7 @@ drinks
 ```
 
 
-
+Let's use this data set to create a Shiny app! This example is a little more advanced, so let's walk through it below. 
 
 
 ```{r}
@@ -320,12 +320,10 @@ library(tidyverse)
 
 # drinks data frame
 drinks=read.csv("drinks.csv")
-#choices = setNames(drinks$total_litres_of_pure_alcohol, drinks$country)
-choices = setNames(drinks$country, drinks$country)
 
+# this creates the data for the pulldown menu
 title <- as.vector(drinks$country)
 code <- as.vector(drinks$country)
-
 #maps code values to title values 
 names(code) <- title
 
@@ -335,7 +333,8 @@ ui <- fluidPage(
   
   sidebarLayout(
     sidebarPanel(
-      selectInput("country", "Select your country",  choices=code)
+      ("Data from the World Health Organization, 2010."),
+      selectInput("country", "Select a country",  choices=code)
     ),
     
     mainPanel(
