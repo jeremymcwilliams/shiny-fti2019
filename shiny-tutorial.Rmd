@@ -70,8 +70,79 @@ shinyApp(ui = ui, server = server)
 
 ```
 
+Try replicating this code in the box below, but change the title panel to say "Hello World!" instead of "title panel"
+
+```{r}
+
+```
+
 ## Styling the user interface (UI)
-Just google it.
+
+We can add content to our Shiny app by adding text to our panels, as you've just done by changing the contents of the title panel. In order to have more control over the appearance and functionality of our content, we can employ some basic HTML elements. 
+
+Two basic but very useful HTML tags are headings and paragraphs.
+
+Headings tags range from h1 to h6, h1 being the largest. Headings are bold by default, as opposed to paragraphs, which will just display regular text. The code below shows the syntax for adding headings and paragraphs to our app:
+
+```{r}
+ui <- fluidPage(
+  mainPanel(
+    h1("This is an h1 heading"),
+    h2("This is an h2 heading"),
+    h3("This is an h3 heading"),
+    h4("This is an h4 heading"),
+    h5("This is an h5 heading"),
+    h6("This is an h6 heading"),
+      
+    p("This is a paragraph")
+  )
+)
+
+server <- function(input, output, session) { } 
+shinyApp(ui = ui, server = server) 
+```
+
+
+Try creating an h1 tag below that says "Hello World!"
+
+```{r}
+ui <- fluidPage(
+  mainPanel(
+    # add your code here
+    
+  )
+)
+
+server <- function(input, output, session) { } 
+shinyApp(ui = ui, server = server) 
+```
+
+
+We can also use an HTML tag to create links on our Shiny app. The code below shows the syntax for adding a link:
+
+```{r}
+ui <- fluidPage(
+    mainPanel(
+      a("This is a link", href="https://shiny.rstudio.com/tutorial/written-tutorial/lesson1/")
+    )
+)
+
+server <- function(input, output, session) { } 
+shinyApp(ui = ui, server = server) 
+```
+
+Try changing the link below to redirect to https://www.lclark.edu
+
+```{r}
+ui <- fluidPage(
+    mainPanel(
+      a("This is a link", href="https://shiny.rstudio.com/tutorial/written-tutorial/lesson1/")
+    )
+)
+
+server <- function(input, output, session) { } 
+shinyApp(ui = ui, server = server) 
+```
 
 
 ## Adding user inputs to the UI
