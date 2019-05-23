@@ -256,7 +256,7 @@ If you need something else to do, try changing the main panel output to display 
 ## Creating a basic histogram
 
 
-## Using a dataset
+
 
 
 ```{r}
@@ -297,4 +297,80 @@ shinyApp(ui = ui, server = server)
 ```
 
 
+
+## Using a dataset
+
+Now let's see if we can create a Shiny app that uses a dataset. We're going to use the publicly available dataset on alcohol consumption by country, from (fivethirtyeight's github repository)[https://github.com/fivethirtyeight/data/tree/master/alcohol-consumption]. This file is already loaded in our workspace, so run the following commands, and take a look at the dataframe:
+
+
+```{r}
+drinks=read.csv("drinks.csv")
+
+drinks
+#units are "servings per person in the year 2010"
+```
+
+
+Let's use this data set to create a Shiny app! This example is a little more advanced, so let's walk through it below. 
+
+
+```{r}
+#for data filtering later
+library(tidyverse)
+
+# drinks data frame
+drinks=read.csv("drinks.csv")
+
+# this creates the data for the pulldown menu
+title <- as.vector(drinks$country)
+code <- as.vector(drinks$country)
+#maps code values to title values 
+names(code) <- title
+
+
+ui <- fluidPage(
+  titlePanel("Alcohol Consumption by Country"),
+  
+  sidebarLayout(
+    sidebarPanel(
+      ("Data from the World Health Organization, 2010."),
+      selectInput("country", "Select a country",  choices=code)
+    ),
+    
+    mainPanel(
+
+      plotOutput("selected_var")
+    )
+  )
+)
+
+server <- function(input, output) {
+
+
+  output$selected_var <- renderPlot({
+    mydata<-drinks %>% filter(drinks$country==input$country)
+    beer<-mydata$beer_servings
+    wine<-mydata$wine_servings
+    spirits<-mydata$spirit_servings
+    labels <- c("beer", "wine", "sprits")
+    barplot(c(beer, wine, spirits),names.arg=labels, main=input$country,  ylab="servings/year")
+    #hist(c(5,6,3), main=input$country, xlab="Your selected number")
+    #paste("You have selected", input$country)
+  })
+  
+#  output$selected_country <- renderText({ 
+#    paste("You have selected", input$val)
+#  })
+ 
+   
+#  output$selected_range <-renderPlot({
+#    hist(runif(input$country), main="test", xlab="Your selected number")
+#  })
+  
+}
+shinyApp(ui = ui, server = server) 
+
+
+
+```
 
