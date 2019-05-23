@@ -296,5 +296,67 @@ shinyApp(ui = ui, server = server)
 
 ```
 
+```{r}
+drinks=read.csv("drinks.csv")
 
+drinks
+```
+
+
+```{r}
+
+# drinks data frame
+drinks=read.csv("drinks.csv")
+#choices = setNames(drinks$total_litres_of_pure_alcohol, drinks$country)
+choices = setNames(drinks$country, drinks$country)
+
+title <- as.vector(drinks$country)
+code <- as.vector(drinks$country)
+
+#maps code values to title values 
+names(code) <- title
+
+
+ui <- fluidPage(
+  titlePanel("Alcohol Consumption by Country"),
+  
+  sidebarLayout(
+    sidebarPanel(
+      selectInput("country", "Select your country",  choices=code)
+    ),
+    
+    mainPanel(
+
+      plotOutput("selected_var")
+    )
+  )
+)
+
+server <- function(input, output) {
+
+  
+  
+  
+  
+  output$selected_var <- renderPlot({ 
+    barplot(c(5,6,3), main=input$country, xlab="Number of Gears")
+    #hist(c(5,6,3), main=input$country, xlab="Your selected number")
+    #paste("You have selected", input$country)
+  })
+  
+#  output$selected_country <- renderText({ 
+#    paste("You have selected", input$val)
+#  })
+ 
+   
+#  output$selected_range <-renderPlot({
+#    hist(runif(input$country), main="test", xlab="Your selected number")
+#  })
+  
+}
+shinyApp(ui = ui, server = server) 
+
+
+
+```
 
