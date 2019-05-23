@@ -296,16 +296,85 @@ shinyApp(ui = ui, server = server) # this launches your app</code></pre>
 server &lt;- function(input, output, session) { } 
 shinyApp(ui = ui, server = server) </code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiXG5MaXN0ZW5pbmcgb24gaHR0cDovLzEyNy4wLjAuMTo1MzQzXG4ifQ== -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5MaXN0ZW5pbmcgb24gaHR0cDovLzEyNy4wLjAuMTo0MzA5XG4ifQ== -->
 <pre><code>
-Listening on http://127.0.0.1:5343</code></pre>
+Listening on http://127.0.0.1:4309</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiTkFcbiJ9 -->
+<pre><code>NA</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="styling-the-user-interface-ui" class="section level2">
+<h2>Styling the user interface (UI)</h2>
+</div>
+<div id="adding-user-inputs-to-the-ui" class="section level2">
+<h2>Adding user inputs to the UI</h2>
+</div>
+<div id="passing-data-from-the-user-inputs-to-the-main-panel" class="section level2">
+<h2>Passing data from the user inputs to the main panel</h2>
+</div>
+<div id="creating-a-basic-histogram" class="section level2">
+<h2>Creating a basic histogram</h2>
+</div>
+<div id="using-a-dataset" class="section level2">
+<h2>Using a dataset</h2>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudWkgPC0gZmx1aWRQYWdlKFxuICB0aXRsZVBhbmVsKFwiY2Vuc3VzVmlzXCIpLFxuICBcbiAgc2lkZWJhckxheW91dChcbiAgICBzaWRlYmFyUGFuZWwoXG4gICAgICBoZWxwVGV4dChcIkNyZWF0ZSBkZW1vZ3JhcGhpYyBtYXBzIHdpdGggXG4gICAgICAgICAgICAgICBpbmZvcm1hdGlvbiBmcm9tIHRoZSAyMDEwIFVTIENlbnN1cy5cIiksXG4gICAgICBcbiAgICAgIHNlbGVjdElucHV0KFwidmFyXCIsIFxuICAgICAgICAgICAgICAgICAgbGFiZWwgPSBcIkNob29zZSBhIHZhcmlhYmxlIHRvIGRpc3BsYXlcIixcbiAgICAgICAgICAgICAgICAgIGNob2ljZXMgPSBjKFwiUGVyY2VudCBXaGl0ZVwiLCBcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFwiUGVyY2VudCBCbGFja1wiLFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXCJQZXJjZW50IEhpc3BhbmljXCIsIFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXCJQZXJjZW50IEFzaWFuXCIpLFxuICAgICAgICAgICAgICAgICAgc2VsZWN0ZWQgPSBcIlBlcmNlbnQgV2hpdGVcIiksXG4gICAgICBcbiAgICAgIHNsaWRlcklucHV0KFwicmFuZ2VcIiwgXG4gICAgICAgICAgICAgICAgICBsYWJlbCA9IFwiUmFuZ2Ugb2YgaW50ZXJlc3Q6XCIsXG4gICAgICAgICAgICAgICAgICBtaW4gPSAxMCwgbWF4ID0gMTAwLCB2YWx1ZSA9IGMoNTApKVxuICAgICksXG4gICAgXG4gICAgbWFpblBhbmVsKFxuICAgICAgdGV4dE91dHB1dChcInNlbGVjdGVkX3ZhclwiKSxcbiAgICAgIHBsb3RPdXRwdXQoXCJzZWxlY3RlZF9yYW5nZVwiKVxuICAgIClcbiAgKVxuKVxuc2VydmVyIDwtIGZ1bmN0aW9uKGlucHV0LCBvdXRwdXQpIHtcbiAgXG4gIG91dHB1dCRzZWxlY3RlZF92YXIgPC0gcmVuZGVyVGV4dCh7IFxuICAgIGlucHV0JHZhclxuICB9KVxuICBcbiAgb3V0cHV0JHNlbGVjdGVkX3JhbmdlIDwtcmVuZGVyUGxvdCh7XG4gICAgaGlzdChydW5pZihpbnB1dCRyYW5nZVsxXSksIG1haW49XCJoZWxsb1wiLCB4bGFiPVwiWW91ciBzZWxlY3RlZCBudW1iZXJcIilcbiAgIFxuICAgIFxuICB9KVxuICBcbn1cbnNoaW55QXBwKHVpID0gdWksIHNlcnZlciA9IHNlcnZlcikgXG5gYGAifQ== -->
+<pre class="r"><code>ui &lt;- fluidPage(
+  titlePanel(&quot;censusVis&quot;),
+  
+  sidebarLayout(
+    sidebarPanel(
+      helpText(&quot;Create demographic maps with 
+               information from the 2010 US Census.&quot;),
+      
+      selectInput(&quot;var&quot;, 
+                  label = &quot;Choose a variable to display&quot;,
+                  choices = c(&quot;Percent White&quot;, 
+                              &quot;Percent Black&quot;,
+                              &quot;Percent Hispanic&quot;, 
+                              &quot;Percent Asian&quot;),
+                  selected = &quot;Percent White&quot;),
+      
+      sliderInput(&quot;range&quot;, 
+                  label = &quot;Range of interest:&quot;,
+                  min = 10, max = 100, value = c(50))
+    ),
+    
+    mainPanel(
+      textOutput(&quot;selected_var&quot;),
+      plotOutput(&quot;selected_range&quot;)
+    )
+  )
+)
+server &lt;- function(input, output) {
+  
+  output$selected_var &lt;- renderText({ 
+    input$var
+  })
+  
+  output$selected_range &lt;-renderPlot({
+    hist(runif(input$range[1]), main=&quot;hello&quot;, xlab=&quot;Your selected number&quot;)
+   
+    
+  })
+  
+}
+shinyApp(ui = ui, server = server) </code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5MaXN0ZW5pbmcgb24gaHR0cDovLzEyNy4wLjAuMTo0MDQ0XG4ifQ== -->
+<pre><code>
+Listening on http://127.0.0.1:4044</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 </div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiU2hpbnkgLSBGVEkgMjAxOSIKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQoKCiMjIFdoYXQgaXMgU2hpbnk/CgpTaGlueSBpcyBhbiBSIHBhY2thZ2UgdGhhdCBtYWtlcyBpdCBlYXN5IHRvIGJ1aWxkIGludGVyYWN0aXZlIHdlYiBhcHBsaWNhdGlvbnMgKGFwcHMpIHN0cmFpZ2h0IGZyb20gUi4KCkxldCdzIGxvb2sgYXQgc29tZSBTaGlueSBleGFtcGxlczoKPGJyPgo8YSBocmVmPSJodHRwczovL3NoaW55LnJzdHVkaW8uY29tL2dhbGxlcnkvdGVsZXBob25lcy1ieS1yZWdpb24uaHRtbCIgdGFyZ2V0PSJfYmxhbmsiPlRlbGVwaG9uZXMgYnkgcmVnaW9uPC9hPgo8YnI+CjxhIGhyZWY9Imh0dHBzOi8vc2hpbnkucnN0dWRpby5jb20vZ2FsbGVyeS9zaW5nbGUtZmlsZS1zaGlueS1hcHAuaHRtbCIgdGFyZ2V0PSJfYmxhbmsiPlJhbmRvbSBoaXN0b2dyYW08L2E+Cjxicj4KPGEgaHJlZj0iaHR0cHM6Ly9zaGlueS5yc3R1ZGlvLmNvbS9nYWxsZXJ5L2xlZ28tc2V0Lmh0bWwiIHRhcmdldD0iX2JsYW5rIj5MZWdvIFNldCBEYXRhYmFzZTwvYT4KCgoKIyMgTGV0J3MgbG9vayB1bmRlciB0aGUgaG9vZCBvZiBhIFNoaW55IEFwcAoKQmVmb3JlIGRvaW5nIGFueXRoaW5nLCB3ZSBuZWVkIHRvIGxvYWQgdGhlIFNoaW55IGxpYnJhcnkgKGNsaWNrIHRoZSBwbGF5IGJ1dHRvbiB0byBydW4gdGhlIGNvZGUpOgoKYGBge3J9CmxpYnJhcnkoc2hpbnkpCmBgYAoKQSBTaGlueSBhcHAgaGFzIHRocmVlIG1haW4gY29tcG9uZW50czoKCiogYSB1c2VyIGludGVyZmFjZSAodWkpIG9iamVjdAoKKiBhIHNlcnZlciBmdW5jdGlvbgoKKiBhIGNhbGwgdG8gdGhlIHNoaW55QXBwIGZ1bmN0aW9uCgpCZWxvdyBpcyB0aGUgY29kZSBmb3IgYSBzdXBlciBiYXNpYyBTaGlueSBhcHAKCmBgYHtyIHdhcm5pbmcgPSBGQUxTRX0KdWkgPC0gYmFzaWNQYWdlKCJUaGlzIGlzIGEgcmVhbCBTaGlueSBhcHAiKSAjIHRoZSB1c2VyIGludGVyZmFjZQoKc2VydmVyIDwtIGZ1bmN0aW9uKGlucHV0LCBvdXRwdXQsIHNlc3Npb24pIHsgfSAjdGhlIHNlcnZlcgoKc2hpbnlBcHAodWkgPSB1aSwgc2VydmVyID0gc2VydmVyKSAjIHRoaXMgbGF1bmNoZXMgeW91ciBhcHAKYGBgCgpTZWUgaWYgeW91IGNhbiByZXBsaWNhdGUgdGhpcywgZXhjZXB0IHJlbmFtZSB0aGUgdmFyaWFibGVzIHVpIHRvIG15VWksIGFuZCBzZXJ2ZXIgdG8gbXlTZXJ2ZXIuIFJldHlwZSB0aGUgY29kZSBpbiB0aGUgY29kZSBibG9jayBiZWxvdywgYW5kIHJ1biBpdCAoeW91IGRvbid0IG5lZWQgdG8gdHlwZSB0aGUgY29tbWVudHMpCgpgYGB7cn0KCmBgYAoKCk9rLCB3ZSBoYXZlIG91ciBmaXJzdCBTaGlueSBhcHAhIEJ1dCBpdCBpc24ndCB2ZXJ5IGdvb2QuIExldCdzIGV4cGFuZCBvbiB0aGUgdXNlciBpbnRlcmZhY2UgYnkgY3JlYXRpbmcgc29tZSBkaWZmZXJlbnQgYXJlYXM6CgpgYGB7cn0KdWkgPC0gZmx1aWRQYWdlKAogIHRpdGxlUGFuZWwoInRpdGxlIHBhbmVsIiksCgogIHNpZGViYXJMYXlvdXQoCiAgICBzaWRlYmFyUGFuZWwoInNpZGViYXIgcGFuZWwiKSwKICAgIG1haW5QYW5lbCgibWFpbiBwYW5lbCIpCiAgKQopCgoKc2VydmVyIDwtIGZ1bmN0aW9uKGlucHV0LCBvdXRwdXQsIHNlc3Npb24pIHsgfSAKCnNoaW55QXBwKHVpID0gdWksIHNlcnZlciA9IHNlcnZlcikgCgpgYGAKCgoKCg==</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiU2hpbnkgLSBGVEkgMjAxOSIKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQoKCiMjIFdoYXQgaXMgU2hpbnk/CgpTaGlueSBpcyBhbiBSIHBhY2thZ2UgdGhhdCBtYWtlcyBpdCBlYXN5IHRvIGJ1aWxkIGludGVyYWN0aXZlIHdlYiBhcHBsaWNhdGlvbnMgKGFwcHMpIHN0cmFpZ2h0IGZyb20gUi4KCkxldCdzIGxvb2sgYXQgc29tZSBTaGlueSBleGFtcGxlczoKPGJyPgo8YSBocmVmPSJodHRwczovL3NoaW55LnJzdHVkaW8uY29tL2dhbGxlcnkvdGVsZXBob25lcy1ieS1yZWdpb24uaHRtbCIgdGFyZ2V0PSJfYmxhbmsiPlRlbGVwaG9uZXMgYnkgcmVnaW9uPC9hPgo8YnI+CjxhIGhyZWY9Imh0dHBzOi8vc2hpbnkucnN0dWRpby5jb20vZ2FsbGVyeS9zaW5nbGUtZmlsZS1zaGlueS1hcHAuaHRtbCIgdGFyZ2V0PSJfYmxhbmsiPlJhbmRvbSBoaXN0b2dyYW08L2E+Cjxicj4KPGEgaHJlZj0iaHR0cHM6Ly9zaGlueS5yc3R1ZGlvLmNvbS9nYWxsZXJ5L2xlZ28tc2V0Lmh0bWwiIHRhcmdldD0iX2JsYW5rIj5MZWdvIFNldCBEYXRhYmFzZTwvYT4KCgoKIyMgTGV0J3MgbG9vayB1bmRlciB0aGUgaG9vZCBvZiBhIFNoaW55IEFwcAoKQmVmb3JlIGRvaW5nIGFueXRoaW5nLCB3ZSBuZWVkIHRvIGxvYWQgdGhlIFNoaW55IGxpYnJhcnkgKGNsaWNrIHRoZSBwbGF5IGJ1dHRvbiB0byBydW4gdGhlIGNvZGUpOgoKYGBge3J9CmxpYnJhcnkoc2hpbnkpCmBgYAoKQSBTaGlueSBhcHAgaGFzIHRocmVlIG1haW4gY29tcG9uZW50czoKCiogYSB1c2VyIGludGVyZmFjZSAodWkpIG9iamVjdAoKKiBhIHNlcnZlciBmdW5jdGlvbgoKKiBhIGNhbGwgdG8gdGhlIHNoaW55QXBwIGZ1bmN0aW9uCgpCZWxvdyBpcyB0aGUgY29kZSBmb3IgYSBzdXBlciBiYXNpYyBTaGlueSBhcHAKCmBgYHtyIHdhcm5pbmcgPSBGQUxTRX0KdWkgPC0gYmFzaWNQYWdlKCJUaGlzIGlzIGEgcmVhbCBTaGlueSBhcHAiKSAjIHRoZSB1c2VyIGludGVyZmFjZQoKc2VydmVyIDwtIGZ1bmN0aW9uKGlucHV0LCBvdXRwdXQsIHNlc3Npb24pIHsgfSAjdGhlIHNlcnZlcgoKc2hpbnlBcHAodWkgPSB1aSwgc2VydmVyID0gc2VydmVyKSAjIHRoaXMgbGF1bmNoZXMgeW91ciBhcHAKYGBgCgpTZWUgaWYgeW91IGNhbiByZXBsaWNhdGUgdGhpcywgZXhjZXB0IHJlbmFtZSB0aGUgdmFyaWFibGVzIHVpIHRvIG15VWksIGFuZCBzZXJ2ZXIgdG8gbXlTZXJ2ZXIuIFJldHlwZSB0aGUgY29kZSBpbiB0aGUgY29kZSBibG9jayBiZWxvdywgYW5kIHJ1biBpdCAoeW91IGRvbid0IG5lZWQgdG8gdHlwZSB0aGUgY29tbWVudHMpCgpgYGB7cn0KCmBgYAoKCk9rLCB3ZSBoYXZlIG91ciBmaXJzdCBTaGlueSBhcHAhIEJ1dCBpdCBpc24ndCB2ZXJ5IGdvb2QuIExldCdzIGV4cGFuZCBvbiB0aGUgdXNlciBpbnRlcmZhY2UgYnkgY3JlYXRpbmcgc29tZSBkaWZmZXJlbnQgYXJlYXM6CgpgYGB7cn0KdWkgPC0gZmx1aWRQYWdlKAogIHRpdGxlUGFuZWwoInRpdGxlIHBhbmVsIiksCgogIHNpZGViYXJMYXlvdXQoCiAgICBzaWRlYmFyUGFuZWwoInNpZGViYXIgcGFuZWwiKSwKICAgIG1haW5QYW5lbCgibWFpbiBwYW5lbCIpCiAgKQopCgoKc2VydmVyIDwtIGZ1bmN0aW9uKGlucHV0LCBvdXRwdXQsIHNlc3Npb24pIHsgfSAKCnNoaW55QXBwKHVpID0gdWksIHNlcnZlciA9IHNlcnZlcikgCgpgYGAKCiMjIFN0eWxpbmcgdGhlIHVzZXIgaW50ZXJmYWNlIChVSSkKCgoKIyMgQWRkaW5nIHVzZXIgaW5wdXRzIHRvIHRoZSBVSQoKCiMjIFBhc3NpbmcgZGF0YSBmcm9tIHRoZSB1c2VyIGlucHV0cyB0byB0aGUgbWFpbiBwYW5lbAoKCiMjIENyZWF0aW5nIGEgYmFzaWMgaGlzdG9ncmFtCgoKIyMgVXNpbmcgYSBkYXRhc2V0CgoKYGBge3J9CnVpIDwtIGZsdWlkUGFnZSgKICB0aXRsZVBhbmVsKCJNYWtlIGEgSGlzdG9ncmFtISIpLAogIAogIHNpZGViYXJMYXlvdXQoCiAgICBzaWRlYmFyUGFuZWwoCiAgICAgIGhlbHBUZXh0KCJBZGp1c3QgdGhlIHNsaWRlciB0byB1cGRhdGUgdGhlIGhpc3RvZ3JhbSIpLAoKICAgICAgCiAgICAgIHNsaWRlcklucHV0KCJyYW5nZSIsIAogICAgICAgICAgICAgICAgICBsYWJlbCA9ICJSYW5nZSBvZiBpbnRlcmVzdDoiLAogICAgICAgICAgICAgICAgICBtaW4gPSAxMCwgbWF4ID0gMTAwLCB2YWx1ZSA9IGMoMTApKQogICAgKSwKICAgIAogICAgbWFpblBhbmVsKAoKICAgICAgcGxvdE91dHB1dCgic2VsZWN0ZWRfcmFuZ2UiKQogICAgKQogICkKKQoKc2VydmVyIDwtIGZ1bmN0aW9uKGlucHV0LCBvdXRwdXQpIHsKICAKCiAgCiAgb3V0cHV0JHNlbGVjdGVkX3JhbmdlIDwtcmVuZGVyUGxvdCh7CiAgICBoaXN0KHJ1bmlmKGlucHV0JHJhbmdlWzFdKSwgbWFpbj0iaGVsbG8iLCB4bGFiPSJZb3VyIHNlbGVjdGVkIG51bWJlciIpCiAgIAoKICAgIAogIH0pCiAgCn0Kc2hpbnlBcHAodWkgPSB1aSwgc2VydmVyID0gc2VydmVyKSAKCmBgYAoKCgo=</div>
 
 
 

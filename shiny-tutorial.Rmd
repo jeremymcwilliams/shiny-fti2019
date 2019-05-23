@@ -70,6 +70,58 @@ shinyApp(ui = ui, server = server)
 
 ```
 
+## Styling the user interface (UI)
+
+
+
+## Adding user inputs to the UI
+
+
+## Passing data from the user inputs to the main panel
+
+
+## Creating a basic histogram
+
+
+## Using a dataset
+
+
+```{r}
+ui <- fluidPage(
+  titlePanel("Make a Histogram!"),
+  
+  sidebarLayout(
+    sidebarPanel(
+      helpText("Adjust the slider to update the histogram"),
+
+      
+      sliderInput("range", 
+                  label = "Range of interest:",
+                  min = 10, max = 100, value = c(10))
+    ),
+    
+    mainPanel(
+
+      plotOutput("selected_range")
+    )
+  )
+)
+
+server <- function(input, output) {
+  
+
+  
+  output$selected_range <-renderPlot({
+    hist(runif(input$range[1]), main="hello", xlab="Your selected number")
+   
+
+    
+  })
+  
+}
+shinyApp(ui = ui, server = server) 
+
+```
 
 
 
