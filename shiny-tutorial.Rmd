@@ -71,7 +71,7 @@ shinyApp(ui = ui, server = server)
 ```
 
 ## Styling the user interface (UI)
-
+Just google it.
 
 
 ## Adding user inputs to the UI
