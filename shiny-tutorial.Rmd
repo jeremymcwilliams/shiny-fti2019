@@ -1,0 +1,75 @@
+---
+title: "Shiny - FTI 2019"
+output: html_notebook
+---
+
+
+## What is Shiny?
+
+Shiny is an R package that makes it easy to build interactive web applications (apps) straight from R.
+
+Let's look at some Shiny examples:
+<br>
+<a href="https://shiny.rstudio.com/gallery/telephones-by-region.html" target="_blank">Telephones by region</a>
+<br>
+<a href="https://shiny.rstudio.com/gallery/single-file-shiny-app.html" target="_blank">Random histogram</a>
+<br>
+<a href="https://shiny.rstudio.com/gallery/lego-set.html" target="_blank">Lego Set Database</a>
+
+
+
+## Let's look under the hood of a Shiny App
+
+Before doing anything, we need to load the Shiny library (click the play button to run the code):
+
+```{r}
+library(shiny)
+```
+
+A Shiny app has three main components:
+
+* a user interface (ui) object
+
+* a server function
+
+* a call to the shinyApp function
+
+Below is the code for a super basic Shiny app
+
+```{r warning = FALSE}
+ui <- basicPage("This is a real Shiny app") # the user interface
+
+server <- function(input, output, session) { } #the server
+
+shinyApp(ui = ui, server = server) # this launches your app
+```
+
+See if you can replicate this, except rename the variables ui to myUi, and server to myServer. Retype the code in the code block below, and run it (you don't need to type the comments)
+
+```{r}
+
+```
+
+
+Ok, we have our first Shiny app! But it isn't very good. Let's expand on the user interface by creating some different areas:
+
+```{r}
+ui <- fluidPage(
+  titlePanel("title panel"),
+
+  sidebarLayout(
+    sidebarPanel("sidebar panel"),
+    mainPanel("main panel")
+  )
+)
+
+
+server <- function(input, output, session) { } 
+
+shinyApp(ui = ui, server = server) 
+
+```
+
+
+
+
