@@ -256,7 +256,7 @@ If you need something else to do, try changing the main panel output to display 
 ## Creating a basic histogram
 
 
-## Using a dataset
+
 
 
 ```{r}
@@ -296,14 +296,27 @@ shinyApp(ui = ui, server = server)
 
 ```
 
+
+
+## Using a dataset
+
+Now let's see if we can create a Shiny app that uses a dataset. We're going to use the publicly available dataset on alcohol consumption by country, from (fivethirtyeight's github repository)[https://github.com/fivethirtyeight/data/tree/master/alcohol-consumption]. This file is already loaded in our workspace, so run the following commands, and take a look at the dataframe:
+
+
 ```{r}
 drinks=read.csv("drinks.csv")
 
 drinks
+#units are "servings per person in the year 2010"
 ```
 
 
+
+
+
 ```{r}
+#for data filtering later
+library(tidyverse)
 
 # drinks data frame
 drinks=read.csv("drinks.csv")
@@ -334,12 +347,14 @@ ui <- fluidPage(
 
 server <- function(input, output) {
 
-  
-  
-  
-  
-  output$selected_var <- renderPlot({ 
-    barplot(c(5,6,3), main=input$country, xlab="Number of Gears")
+
+  output$selected_var <- renderPlot({
+    mydata<-drinks %>% filter(drinks$country==input$country)
+    beer<-mydata$beer_servings
+    wine<-mydata$wine_servings
+    spirits<-mydata$spirit_servings
+    labels <- c("beer", "wine", "sprits")
+    barplot(c(beer, wine, spirits),names.arg=labels, main=input$country,  ylab="servings/year")
     #hist(c(5,6,3), main=input$country, xlab="Your selected number")
     #paste("You have selected", input$country)
   })
