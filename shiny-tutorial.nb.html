@@ -268,6 +268,13 @@ $(document).ready(function () {
 <p>Below is the code for a super basic Shiny app</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudWkgPC0gYmFzaWNQYWdlKFwiVGhpcyBpcyBhIHJlYWwgU2hpbnkgYXBwXCIpICMgdGhlIHVzZXIgaW50ZXJmYWNlXG5cbnNlcnZlciA8LSBmdW5jdGlvbihpbnB1dCwgb3V0cHV0LCBzZXNzaW9uKSB7IH0gI3RoZSBzZXJ2ZXJcblxuc2hpbnlBcHAodWkgPSB1aSwgc2VydmVyID0gc2VydmVyKSAjIHRoaXMgbGF1bmNoZXMgeW91ciBhcHBcbmBgYCJ9 -->
+<pre class="r"><code>ui &lt;- basicPage(&quot;This is a real Shiny app&quot;) # the user interface
+
+server &lt;- function(input, output, session) { } #the server
+
+shinyApp(ui = ui, server = server) # this launches your app</code></pre>
+<!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>See if you can replicate this, except rename the variables ui to myUi, and server to myServer. Retype the code in the code block below, and run it (you don’t need to type the comments)</p>
@@ -305,11 +312,11 @@ shinyApp(ui = ui, server = server)
 <div id="styling-the-user-interface-ui" class="section level2">
 <h2>Styling the user interface (UI)</h2>
 <p>We can add content to our Shiny app by adding text to our panels, as you’ve just done by changing the contents of the title panel. In order to have more control over the appearance and functionality of our content, we can employ some basic HTML elements.</p>
-<p>Two basic but very useful HTML tags are headings and paragraphs.</p>
-<p>Headings tags range from h1 to h6, h1 being the largest. Headings are bold by default, as opposed to paragraphs, which will just display regular text. The code below shows the syntax for adding headings and paragraphs to our app:</p>
+<p>Headings and paragraphs are two basic but very useful HTML tags.</p>
+<p>Headings tags range from h1 to h6, h1 being the largest. Headings are bold by default, as opposed to paragraphs, which will just display regular text. The code below shows the syntax for adding headings and paragraphs to an app:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudWkgPC0gZmx1aWRQYWdlKFxuICBtYWluUGFuZWwoXG4gICAgaDEoXCJUaGlzIGlzIGFuIGgxIGhlYWRpbmdcIiksXG4gICAgaDIoXCJUaGlzIGlzIGFuIGgyIGhlYWRpbmdcIiksXG4gICAgaDMoXCJUaGlzIGlzIGFuIGgzIGhlYWRpbmdcIiksXG4gICAgaDQoXCJUaGlzIGlzIGFuIGg0IGhlYWRpbmdcIiksXG4gICAgaDUoXCJUaGlzIGlzIGFuIGg1IGhlYWRpbmdcIiksXG4gICAgaDYoXCJUaGlzIGlzIGFuIGg2IGhlYWRpbmdcIiksXG4gICAgICBcbiAgICBwKFwiVGhpcyBpcyBhIHBhcmFncmFwaFwiKVxuICApXG4pXG5zZXJ2ZXIgPC0gZnVuY3Rpb24oaW5wdXQsIG91dHB1dCwgc2Vzc2lvbikgeyB9IFxuc2hpbnlBcHAodWkgPSB1aSwgc2VydmVyID0gc2VydmVyKSBcbmBgYCJ9 -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudWkgPC0gZmx1aWRQYWdlKFxuICBtYWluUGFuZWwoXG4gICAgaDEoXCJUaGlzIGlzIGFuIGgxIGhlYWRpbmdcIiksXG4gICAgaDIoXCJUaGlzIGlzIGFuIGgyIGhlYWRpbmdcIiksXG4gICAgaDMoXCJUaGlzIGlzIGFuIGgzIGhlYWRpbmdcIiksXG4gICAgaDQoXCJUaGlzIGlzIGFuIGg0IGhlYWRpbmdcIiksXG4gICAgaDUoXCJUaGlzIGlzIGFuIGg1IGhlYWRpbmdcIiksXG4gICAgaDYoXCJUaGlzIGlzIGFuIGg2IGhlYWRpbmdcIiksXG4gICAgICBcbiAgICBwKFwiVGhpcyBpcyBhIHBhcmFncmFwaFwiKVxuICApXG4pXG5cbnNlcnZlciA8LSBmdW5jdGlvbihpbnB1dCwgb3V0cHV0LCBzZXNzaW9uKSB7IH0gXG5zaGlueUFwcCh1aSA9IHVpLCBzZXJ2ZXIgPSBzZXJ2ZXIpIFxuYGBgIn0= -->
 <pre class="r"><code>ui &lt;- fluidPage(
   mainPanel(
     h1(&quot;This is an h1 heading&quot;),
@@ -322,16 +329,10 @@ shinyApp(ui = ui, server = server)
     p(&quot;This is a paragraph&quot;)
   )
 )
+
 server &lt;- function(input, output, session) { } 
 shinyApp(ui = ui, server = server) </code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiXG5MaXN0ZW5pbmcgb24gaHR0cDovLzEyNy4wLjAuMTo1OTYxXG4ifQ== -->
-<pre><code>
-Listening on http://127.0.0.1:5961</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiTkFcbiJ9 -->
-<pre><code>NA</code></pre>
-<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Try creating an h1 tag below that says “Hello World!”</p>
@@ -383,6 +384,77 @@ shinyApp(ui = ui, server = server) </code></pre>
 </div>
 <div id="adding-user-inputs-to-the-ui" class="section level2">
 <h2>Adding user inputs to the UI</h2>
+<p>There are a number of widgets we can add to our Shiny app for users to interact with. For now, we’ll discuss a couple of basic examples: the dropdown selector and the slider input.</p>
+<p><strong>Example code for a dropdown selector:</strong></p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudWkgPC0gZmx1aWRQYWdlKFxuICBzaWRlYmFyUGFuZWwoXG4gICAgXG4gICAgc2VsZWN0SW5wdXQoXCJzZWxlY3RcIiwgaDQoXCJzZWxlY3QgYm94XCIpLCBcbiAgICAgICAgICAgICAgICBjaG9pY2VzID0gbGlzdChcIkNob2ljZSAxXCIgPSAxLCBcIkNob2ljZSAyXCIgPSAyLCBcIkNob2ljZSAzXCIgPSAzKSwgc2VsZWN0ZWQgPSAxKSBcbiAgICBcbiAgICAjIHRoZSAnc2VsZWN0ZWQnIG9wdGlvbiBkZWZpbmVzIHdoaWNoIG9wdGlvbiBpcyBzZWxlY3RlZCBieSBkZWZhdWx0XG4gIClcbilcblxuc2VydmVyIDwtIGZ1bmN0aW9uKGlucHV0LCBvdXRwdXQsIHNlc3Npb24pIHsgfSBcbnNoaW55QXBwKHVpID0gdWksIHNlcnZlciA9IHNlcnZlcikgXG5gYGAifQ== -->
+<pre class="r"><code>ui &lt;- fluidPage(
+  sidebarPanel(
+    
+    selectInput(&quot;select&quot;, h4(&quot;select box&quot;), 
+                choices = list(&quot;Choice 1&quot; = 1, &quot;Choice 2&quot; = 2, &quot;Choice 3&quot; = 3), selected = 1) 
+    
+    # the 'selected' option defines which option is selected by default
+  )
+)
+
+server &lt;- function(input, output, session) { } 
+shinyApp(ui = ui, server = server) </code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Now try altering the code below so the choices read “red”, “blue”, and “yellow”, and option 3 is selected by default:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudWkgPC0gZmx1aWRQYWdlKFxuICBzaWRlYmFyUGFuZWwoXG5cbiAgICBzZWxlY3RJbnB1dChcInNlbGVjdFwiLCBoNChcInNlbGVjdCBib3hcIiksIFxuICAgICAgICAgICAgICAgIGNob2ljZXMgPSBsaXN0KFwiQ2hvaWNlIDFcIiA9IDEsIFwiQ2hvaWNlIDJcIiA9IDIsIFwiQ2hvaWNlIDNcIiA9IDMpLCBzZWxlY3RlZCA9IDEpXG4gIClcbilcblxuc2VydmVyIDwtIGZ1bmN0aW9uKGlucHV0LCBvdXRwdXQsIHNlc3Npb24pIHsgfSBcbnNoaW55QXBwKHVpID0gdWksIHNlcnZlciA9IHNlcnZlcikgXG5gYGAifQ== -->
+<pre class="r"><code>ui &lt;- fluidPage(
+  sidebarPanel(
+
+    selectInput(&quot;select&quot;, h4(&quot;select box&quot;), 
+                choices = list(&quot;Choice 1&quot; = 1, &quot;Choice 2&quot; = 2, &quot;Choice 3&quot; = 3), selected = 1)
+  )
+)
+
+server &lt;- function(input, output, session) { } 
+shinyApp(ui = ui, server = server) </code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p><strong>Example code for a slider input:</strong></p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudWkgPC0gZmx1aWRQYWdlKFxuICBzaWRlYmFyUGFuZWwoXG5cbiAgICBzbGlkZXJJbnB1dChcInNsaWRlclwiLCBoNChcInNsaWRlclwiKSwgbWluID0gMCwgbWF4ID0gMTAwLCB2YWx1ZSA9IDUwKVxuICAgIFxuICAgICMgdGhlICd2YWx1ZScgb3B0aW9uIGRlZmluZXMgdGhlIGRlZmF1bHQgdmFsdWUgZm9yIHRoZSBzbGlkZXJcbiAgKVxuKVxuXG5zZXJ2ZXIgPC0gZnVuY3Rpb24oaW5wdXQsIG91dHB1dCwgc2Vzc2lvbikgeyB9IFxuc2hpbnlBcHAodWkgPSB1aSwgc2VydmVyID0gc2VydmVyKSBcbmBgYCJ9 -->
+<pre class="r"><code>ui &lt;- fluidPage(
+  sidebarPanel(
+
+    sliderInput(&quot;slider&quot;, h4(&quot;slider&quot;), min = 0, max = 100, value = 50)
+    
+    # the 'value' option defines the default value for the slider
+  )
+)
+
+server &lt;- function(input, output, session) { } 
+shinyApp(ui = ui, server = server) </code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Now try altering the code below so the slider ranges between 50 and 500, and 100 is the default value:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudWkgPC0gZmx1aWRQYWdlKFxuICBzaWRlYmFyUGFuZWwoXG5cbiAgICBzbGlkZXJJbnB1dChcInNsaWRlclwiLCBoNChcInNsaWRlclwiKSwgbWluID0gMCwgbWF4ID0gMTAwLCB2YWx1ZSA9IDUwKVxuICApXG4pXG5cbnNlcnZlciA8LSBmdW5jdGlvbihpbnB1dCwgb3V0cHV0LCBzZXNzaW9uKSB7IH0gXG5zaGlueUFwcCh1aSA9IHVpLCBzZXJ2ZXIgPSBzZXJ2ZXIpIFxuYGBgIn0= -->
+<pre class="r"><code>ui &lt;- fluidPage(
+  sidebarPanel(
+
+    sliderInput(&quot;slider&quot;, h4(&quot;slider&quot;), min = 0, max = 100, value = 50)
+  )
+)
+
+server &lt;- function(input, output, session) { } 
+shinyApp(ui = ui, server = server) </code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
 </div>
 <div id="passing-data-from-the-user-inputs-to-the-main-panel" class="section level2">
 <h2>Passing data from the user inputs to the main panel</h2>
@@ -394,13 +466,14 @@ shinyApp(ui = ui, server = server) </code></pre>
 <h2>Using a dataset</h2>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudWkgPC0gZmx1aWRQYWdlKFxuICB0aXRsZVBhbmVsKFwiTWFrZSBhIEhpc3RvZ3JhbSFcIiksXG4gIFxuICBzaWRlYmFyTGF5b3V0KFxuICAgIHNpZGViYXJQYW5lbChcbiAgICAgIGhlbHBUZXh0KFwiQWRqdXN0IHRoZSBzbGlkZXIgdG8gdXBkYXRlIHRoZSBoaXN0b2dyYW1cIiksXG4gICAgICBcbiAgICAgIHNsaWRlcklucHV0KFwicmFuZ2VcIiwgXG4gICAgICAgICAgICAgICAgICBsYWJlbCA9IFwiUmFuZ2Ugb2YgaW50ZXJlc3Q6XCIsXG4gICAgICAgICAgICAgICAgICBtaW4gPSAxMCwgbWF4ID0gMTAwLCB2YWx1ZSA9IGMoMTApKVxuICAgICksXG4gICAgXG4gICAgbWFpblBhbmVsKFxuICAgICAgcGxvdE91dHB1dChcInNlbGVjdGVkX3JhbmdlXCIpXG4gICAgKVxuICApXG4pXG5zZXJ2ZXIgPC0gZnVuY3Rpb24oaW5wdXQsIG91dHB1dCkge1xuICBcbiAgXG4gIG91dHB1dCRzZWxlY3RlZF9yYW5nZSA8LXJlbmRlclBsb3Qoe1xuICAgIGhpc3QocnVuaWYoaW5wdXQkcmFuZ2VbMV0pLCBtYWluPVwiaGVsbG9cIiwgeGxhYj1cIllvdXIgc2VsZWN0ZWQgbnVtYmVyXCIpXG4gICBcbiAgICBcbiAgfSlcbiAgXG59XG5zaGlueUFwcCh1aSA9IHVpLCBzZXJ2ZXIgPSBzZXJ2ZXIpIFxuYGBgIn0= -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudWkgPC0gZmx1aWRQYWdlKFxuICB0aXRsZVBhbmVsKFwiTWFrZSBhIEhpc3RvZ3JhbSFcIiksXG4gIFxuICBzaWRlYmFyTGF5b3V0KFxuICAgIHNpZGViYXJQYW5lbChcbiAgICAgIGhlbHBUZXh0KFwiQWRqdXN0IHRoZSBzbGlkZXIgdG8gdXBkYXRlIHRoZSBoaXN0b2dyYW1cIiksXG5cbiAgICAgIFxuICAgICAgc2xpZGVySW5wdXQoXCJyYW5nZVwiLCBcbiAgICAgICAgICAgICAgICAgIGxhYmVsID0gXCJSYW5nZSBvZiBpbnRlcmVzdDpcIixcbiAgICAgICAgICAgICAgICAgIG1pbiA9IDEwLCBtYXggPSAxMDAsIHZhbHVlID0gYygxMCkpXG4gICAgKSxcbiAgICBcbiAgICBtYWluUGFuZWwoXG5cbiAgICAgIHBsb3RPdXRwdXQoXCJzZWxlY3RlZF9yYW5nZVwiKVxuICAgIClcbiAgKVxuKVxuXG5zZXJ2ZXIgPC0gZnVuY3Rpb24oaW5wdXQsIG91dHB1dCkge1xuICBcblxuICBcbiAgb3V0cHV0JHNlbGVjdGVkX3JhbmdlIDwtcmVuZGVyUGxvdCh7XG4gICAgaGlzdChydW5pZihpbnB1dCRyYW5nZVsxXSksIG1haW49XCJoZWxsb1wiLCB4bGFiPVwiWW91ciBzZWxlY3RlZCBudW1iZXJcIilcbiAgIFxuXG4gICAgXG4gIH0pXG4gIFxufVxuc2hpbnlBcHAodWkgPSB1aSwgc2VydmVyID0gc2VydmVyKSBcblxuYGBgIn0= -->
 <pre class="r"><code>ui &lt;- fluidPage(
   titlePanel(&quot;Make a Histogram!&quot;),
   
   sidebarLayout(
     sidebarPanel(
       helpText(&quot;Adjust the slider to update the histogram&quot;),
+
       
       sliderInput(&quot;range&quot;, 
                   label = &quot;Range of interest:&quot;,
@@ -408,35 +481,33 @@ shinyApp(ui = ui, server = server) </code></pre>
     ),
     
     mainPanel(
+
       plotOutput(&quot;selected_range&quot;)
     )
   )
 )
+
 server &lt;- function(input, output) {
   
+
   
   output$selected_range &lt;-renderPlot({
     hist(runif(input$range[1]), main=&quot;hello&quot;, xlab=&quot;Your selected number&quot;)
    
+
     
   })
   
 }
-shinyApp(ui = ui, server = server) </code></pre>
+shinyApp(ui = ui, server = server) 
+</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiXG5MaXN0ZW5pbmcgb24gaHR0cDovLzEyNy4wLjAuMTo1OTYxXG4ifQ== -->
-<pre><code>
-Listening on http://127.0.0.1:5961</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiTkFcbiJ9 -->
-<pre><code>NA</code></pre>
-<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 </div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiU2hpbnkgLSBGVEkgMjAxOSIKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQoKCiMjIFdoYXQgaXMgU2hpbnk/CgpTaGlueSBpcyBhbiBSIHBhY2thZ2UgdGhhdCBtYWtlcyBpdCBlYXN5IHRvIGJ1aWxkIGludGVyYWN0aXZlIHdlYiBhcHBsaWNhdGlvbnMgKGFwcHMpIHN0cmFpZ2h0IGZyb20gUi4KCkxldCdzIGxvb2sgYXQgc29tZSBTaGlueSBleGFtcGxlczoKPGJyPgo8YSBocmVmPSJodHRwczovL3NoaW55LnJzdHVkaW8uY29tL2dhbGxlcnkvdGVsZXBob25lcy1ieS1yZWdpb24uaHRtbCIgdGFyZ2V0PSJfYmxhbmsiPlRlbGVwaG9uZXMgYnkgcmVnaW9uPC9hPgo8YnI+CjxhIGhyZWY9Imh0dHBzOi8vc2hpbnkucnN0dWRpby5jb20vZ2FsbGVyeS9zaW5nbGUtZmlsZS1zaGlueS1hcHAuaHRtbCIgdGFyZ2V0PSJfYmxhbmsiPlJhbmRvbSBoaXN0b2dyYW08L2E+Cjxicj4KPGEgaHJlZj0iaHR0cHM6Ly9zaGlueS5yc3R1ZGlvLmNvbS9nYWxsZXJ5L2xlZ28tc2V0Lmh0bWwiIHRhcmdldD0iX2JsYW5rIj5MZWdvIFNldCBEYXRhYmFzZTwvYT4KCgoKIyMgTGV0J3MgbG9vayB1bmRlciB0aGUgaG9vZCBvZiBhIFNoaW55IEFwcAoKQmVmb3JlIGRvaW5nIGFueXRoaW5nLCB3ZSBuZWVkIHRvIGxvYWQgdGhlIFNoaW55IGxpYnJhcnkgKGNsaWNrIHRoZSBwbGF5IGJ1dHRvbiB0byBydW4gdGhlIGNvZGUpOgoKYGBge3J9CmxpYnJhcnkoc2hpbnkpCmBgYAoKQSBTaGlueSBhcHAgaGFzIHRocmVlIG1haW4gY29tcG9uZW50czoKCiogYSB1c2VyIGludGVyZmFjZSAodWkpIG9iamVjdAoKKiBhIHNlcnZlciBmdW5jdGlvbgoKKiBhIGNhbGwgdG8gdGhlIHNoaW55QXBwIGZ1bmN0aW9uCgpCZWxvdyBpcyB0aGUgY29kZSBmb3IgYSBzdXBlciBiYXNpYyBTaGlueSBhcHAKCmBgYHtyIHdhcm5pbmcgPSBGQUxTRX0KdWkgPC0gYmFzaWNQYWdlKCJUaGlzIGlzIGEgcmVhbCBTaGlueSBhcHAiKSAjIHRoZSB1c2VyIGludGVyZmFjZQoKc2VydmVyIDwtIGZ1bmN0aW9uKGlucHV0LCBvdXRwdXQsIHNlc3Npb24pIHsgfSAjdGhlIHNlcnZlcgoKc2hpbnlBcHAodWkgPSB1aSwgc2VydmVyID0gc2VydmVyKSAjIHRoaXMgbGF1bmNoZXMgeW91ciBhcHAKYGBgCgpTZWUgaWYgeW91IGNhbiByZXBsaWNhdGUgdGhpcywgZXhjZXB0IHJlbmFtZSB0aGUgdmFyaWFibGVzIHVpIHRvIG15VWksIGFuZCBzZXJ2ZXIgdG8gbXlTZXJ2ZXIuIFJldHlwZSB0aGUgY29kZSBpbiB0aGUgY29kZSBibG9jayBiZWxvdywgYW5kIHJ1biBpdCAoeW91IGRvbid0IG5lZWQgdG8gdHlwZSB0aGUgY29tbWVudHMpCgpgYGB7cn0KCmBgYAoKCk9rLCB3ZSBoYXZlIG91ciBmaXJzdCBTaGlueSBhcHAhIEJ1dCBpdCBpc24ndCB2ZXJ5IGdvb2QuIExldCdzIGV4cGFuZCBvbiB0aGUgdXNlciBpbnRlcmZhY2UgYnkgY3JlYXRpbmcgc29tZSBkaWZmZXJlbnQgYXJlYXM6CgpgYGB7cn0KdWkgPC0gZmx1aWRQYWdlKAogIHRpdGxlUGFuZWwoInRpdGxlIHBhbmVsIiksCgogIHNpZGViYXJMYXlvdXQoCiAgICBzaWRlYmFyUGFuZWwoInNpZGViYXIgcGFuZWwiKSwKICAgIG1haW5QYW5lbCgibWFpbiBwYW5lbCIpCiAgKQopCgoKc2VydmVyIDwtIGZ1bmN0aW9uKGlucHV0LCBvdXRwdXQsIHNlc3Npb24pIHsgfSAKCnNoaW55QXBwKHVpID0gdWksIHNlcnZlciA9IHNlcnZlcikgCgpgYGAKClRyeSByZXBsaWNhdGluZyB0aGlzIGNvZGUgaW4gdGhlIGJveCBiZWxvdywgYnV0IGNoYW5nZSB0aGUgdGl0bGUgcGFuZWwgdG8gc2F5ICJIZWxsbyBXb3JsZCEiIGluc3RlYWQgb2YgInRpdGxlIHBhbmVsIgoKYGBge3J9CgpgYGAKCiMjIFN0eWxpbmcgdGhlIHVzZXIgaW50ZXJmYWNlIChVSSkKCldlIGNhbiBhZGQgY29udGVudCB0byBvdXIgU2hpbnkgYXBwIGJ5IGFkZGluZyB0ZXh0IHRvIG91ciBwYW5lbHMsIGFzIHlvdSd2ZSBqdXN0IGRvbmUgYnkgY2hhbmdpbmcgdGhlIGNvbnRlbnRzIG9mIHRoZSB0aXRsZSBwYW5lbC4gSW4gb3JkZXIgdG8gaGF2ZSBtb3JlIGNvbnRyb2wgb3ZlciB0aGUgYXBwZWFyYW5jZSBhbmQgZnVuY3Rpb25hbGl0eSBvZiBvdXIgY29udGVudCwgd2UgY2FuIGVtcGxveSBzb21lIGJhc2ljIEhUTUwgZWxlbWVudHMuIAoKVHdvIGJhc2ljIGJ1dCB2ZXJ5IHVzZWZ1bCBIVE1MIHRhZ3MgYXJlIGhlYWRpbmdzIGFuZCBwYXJhZ3JhcGhzLgoKSGVhZGluZ3MgdGFncyByYW5nZSBmcm9tIGgxIHRvIGg2LCBoMSBiZWluZyB0aGUgbGFyZ2VzdC4gSGVhZGluZ3MgYXJlIGJvbGQgYnkgZGVmYXVsdCwgYXMgb3Bwb3NlZCB0byBwYXJhZ3JhcGhzLCB3aGljaCB3aWxsIGp1c3QgZGlzcGxheSByZWd1bGFyIHRleHQuIFRoZSBjb2RlIGJlbG93IHNob3dzIHRoZSBzeW50YXggZm9yIGFkZGluZyBoZWFkaW5ncyBhbmQgcGFyYWdyYXBocyB0byBvdXIgYXBwOgoKYGBge3J9CnVpIDwtIGZsdWlkUGFnZSgKICBtYWluUGFuZWwoCiAgICBoMSgiVGhpcyBpcyBhbiBoMSBoZWFkaW5nIiksCiAgICBoMigiVGhpcyBpcyBhbiBoMiBoZWFkaW5nIiksCiAgICBoMygiVGhpcyBpcyBhbiBoMyBoZWFkaW5nIiksCiAgICBoNCgiVGhpcyBpcyBhbiBoNCBoZWFkaW5nIiksCiAgICBoNSgiVGhpcyBpcyBhbiBoNSBoZWFkaW5nIiksCiAgICBoNigiVGhpcyBpcyBhbiBoNiBoZWFkaW5nIiksCiAgICAgIAogICAgcCgiVGhpcyBpcyBhIHBhcmFncmFwaCIpCiAgKQopCgpzZXJ2ZXIgPC0gZnVuY3Rpb24oaW5wdXQsIG91dHB1dCwgc2Vzc2lvbikgeyB9IApzaGlueUFwcCh1aSA9IHVpLCBzZXJ2ZXIgPSBzZXJ2ZXIpIApgYGAKCgpUcnkgY3JlYXRpbmcgYW4gaDEgdGFnIGJlbG93IHRoYXQgc2F5cyAiSGVsbG8gV29ybGQhIgoKYGBge3J9CnVpIDwtIGZsdWlkUGFnZSgKICBtYWluUGFuZWwoCiAgICAjIGFkZCB5b3VyIGNvZGUgaGVyZQogICAgCiAgKQopCgpzZXJ2ZXIgPC0gZnVuY3Rpb24oaW5wdXQsIG91dHB1dCwgc2Vzc2lvbikgeyB9IApzaGlueUFwcCh1aSA9IHVpLCBzZXJ2ZXIgPSBzZXJ2ZXIpIApgYGAKCgpXZSBjYW4gYWxzbyB1c2UgYW4gSFRNTCB0YWcgdG8gY3JlYXRlIGxpbmtzIG9uIG91ciBTaGlueSBhcHAuIFRoZSBjb2RlIGJlbG93IHNob3dzIHRoZSBzeW50YXggZm9yIGFkZGluZyBhIGxpbms6CgpgYGB7cn0KdWkgPC0gZmx1aWRQYWdlKAogICAgbWFpblBhbmVsKAogICAgICBhKCJUaGlzIGlzIGEgbGluayIsIGhyZWY9Imh0dHBzOi8vc2hpbnkucnN0dWRpby5jb20vdHV0b3JpYWwvd3JpdHRlbi10dXRvcmlhbC9sZXNzb24xLyIpCiAgICApCikKCnNlcnZlciA8LSBmdW5jdGlvbihpbnB1dCwgb3V0cHV0LCBzZXNzaW9uKSB7IH0gCnNoaW55QXBwKHVpID0gdWksIHNlcnZlciA9IHNlcnZlcikgCmBgYAoKVHJ5IGNoYW5naW5nIHRoZSBsaW5rIGJlbG93IHRvIHJlZGlyZWN0IHRvIGh0dHBzOi8vd3d3LmxjbGFyay5lZHUKCmBgYHtyfQp1aSA8LSBmbHVpZFBhZ2UoCiAgICBtYWluUGFuZWwoCiAgICAgIGEoIlRoaXMgaXMgYSBsaW5rIiwgaHJlZj0iaHR0cHM6Ly9zaGlueS5yc3R1ZGlvLmNvbS90dXRvcmlhbC93cml0dGVuLXR1dG9yaWFsL2xlc3NvbjEvIikKICAgICkKKQoKc2VydmVyIDwtIGZ1bmN0aW9uKGlucHV0LCBvdXRwdXQsIHNlc3Npb24pIHsgfSAKc2hpbnlBcHAodWkgPSB1aSwgc2VydmVyID0gc2VydmVyKSAKYGBgCgoKIyMgQWRkaW5nIHVzZXIgaW5wdXRzIHRvIHRoZSBVSQoKCiMjIFBhc3NpbmcgZGF0YSBmcm9tIHRoZSB1c2VyIGlucHV0cyB0byB0aGUgbWFpbiBwYW5lbAoKCiMjIENyZWF0aW5nIGEgYmFzaWMgaGlzdG9ncmFtCgoKIyMgVXNpbmcgYSBkYXRhc2V0CgoKYGBge3J9CnVpIDwtIGZsdWlkUGFnZSgKICB0aXRsZVBhbmVsKCJNYWtlIGEgSGlzdG9ncmFtISIpLAogIAogIHNpZGViYXJMYXlvdXQoCiAgICBzaWRlYmFyUGFuZWwoCiAgICAgIGhlbHBUZXh0KCJBZGp1c3QgdGhlIHNsaWRlciB0byB1cGRhdGUgdGhlIGhpc3RvZ3JhbSIpLAoKICAgICAgCiAgICAgIHNsaWRlcklucHV0KCJyYW5nZSIsIAogICAgICAgICAgICAgICAgICBsYWJlbCA9ICJSYW5nZSBvZiBpbnRlcmVzdDoiLAogICAgICAgICAgICAgICAgICBtaW4gPSAxMCwgbWF4ID0gMTAwLCB2YWx1ZSA9IGMoMTApKQogICAgKSwKICAgIAogICAgbWFpblBhbmVsKAoKICAgICAgcGxvdE91dHB1dCgic2VsZWN0ZWRfcmFuZ2UiKQogICAgKQogICkKKQoKc2VydmVyIDwtIGZ1bmN0aW9uKGlucHV0LCBvdXRwdXQpIHsKICAKCiAgCiAgb3V0cHV0JHNlbGVjdGVkX3JhbmdlIDwtcmVuZGVyUGxvdCh7CiAgICBoaXN0KHJ1bmlmKGlucHV0JHJhbmdlWzFdKSwgbWFpbj0iaGVsbG8iLCB4bGFiPSJZb3VyIHNlbGVjdGVkIG51bWJlciIpCiAgIAoKICAgIAogIH0pCiAgCn0Kc2hpbnlBcHAodWkgPSB1aSwgc2VydmVyID0gc2VydmVyKSAKCmBgYAoKCgo=</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiU2hpbnkgLSBGVEkgMjAxOSIKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQoKCiMjIFdoYXQgaXMgU2hpbnk/CgpTaGlueSBpcyBhbiBSIHBhY2thZ2UgdGhhdCBtYWtlcyBpdCBlYXN5IHRvIGJ1aWxkIGludGVyYWN0aXZlIHdlYiBhcHBsaWNhdGlvbnMgKGFwcHMpIHN0cmFpZ2h0IGZyb20gUi4KCkxldCdzIGxvb2sgYXQgc29tZSBTaGlueSBleGFtcGxlczoKPGJyPgo8YSBocmVmPSJodHRwczovL3NoaW55LnJzdHVkaW8uY29tL2dhbGxlcnkvdGVsZXBob25lcy1ieS1yZWdpb24uaHRtbCIgdGFyZ2V0PSJfYmxhbmsiPlRlbGVwaG9uZXMgYnkgcmVnaW9uPC9hPgo8YnI+CjxhIGhyZWY9Imh0dHBzOi8vc2hpbnkucnN0dWRpby5jb20vZ2FsbGVyeS9zaW5nbGUtZmlsZS1zaGlueS1hcHAuaHRtbCIgdGFyZ2V0PSJfYmxhbmsiPlJhbmRvbSBoaXN0b2dyYW08L2E+Cjxicj4KPGEgaHJlZj0iaHR0cHM6Ly9zaGlueS5yc3R1ZGlvLmNvbS9nYWxsZXJ5L2xlZ28tc2V0Lmh0bWwiIHRhcmdldD0iX2JsYW5rIj5MZWdvIFNldCBEYXRhYmFzZTwvYT4KCgoKIyMgTGV0J3MgbG9vayB1bmRlciB0aGUgaG9vZCBvZiBhIFNoaW55IEFwcAoKQmVmb3JlIGRvaW5nIGFueXRoaW5nLCB3ZSBuZWVkIHRvIGxvYWQgdGhlIFNoaW55IGxpYnJhcnkgKGNsaWNrIHRoZSBwbGF5IGJ1dHRvbiB0byBydW4gdGhlIGNvZGUpOgoKYGBge3J9CmxpYnJhcnkoc2hpbnkpCmBgYAoKQSBTaGlueSBhcHAgaGFzIHRocmVlIG1haW4gY29tcG9uZW50czoKCiogYSB1c2VyIGludGVyZmFjZSAodWkpIG9iamVjdAoKKiBhIHNlcnZlciBmdW5jdGlvbgoKKiBhIGNhbGwgdG8gdGhlIHNoaW55QXBwIGZ1bmN0aW9uCgpCZWxvdyBpcyB0aGUgY29kZSBmb3IgYSBzdXBlciBiYXNpYyBTaGlueSBhcHAKCmBgYHtyIHdhcm5pbmcgPSBGQUxTRX0KdWkgPC0gYmFzaWNQYWdlKCJUaGlzIGlzIGEgcmVhbCBTaGlueSBhcHAiKSAjIHRoZSB1c2VyIGludGVyZmFjZQoKc2VydmVyIDwtIGZ1bmN0aW9uKGlucHV0LCBvdXRwdXQsIHNlc3Npb24pIHsgfSAjdGhlIHNlcnZlcgoKc2hpbnlBcHAodWkgPSB1aSwgc2VydmVyID0gc2VydmVyKSAjIHRoaXMgbGF1bmNoZXMgeW91ciBhcHAKYGBgCgpTZWUgaWYgeW91IGNhbiByZXBsaWNhdGUgdGhpcywgZXhjZXB0IHJlbmFtZSB0aGUgdmFyaWFibGVzIHVpIHRvIG15VWksIGFuZCBzZXJ2ZXIgdG8gbXlTZXJ2ZXIuIFJldHlwZSB0aGUgY29kZSBpbiB0aGUgY29kZSBibG9jayBiZWxvdywgYW5kIHJ1biBpdCAoeW91IGRvbid0IG5lZWQgdG8gdHlwZSB0aGUgY29tbWVudHMpCgpgYGB7cn0KCmBgYAoKCk9rLCB3ZSBoYXZlIG91ciBmaXJzdCBTaGlueSBhcHAhIEJ1dCBpdCBpc24ndCB2ZXJ5IGdvb2QuIExldCdzIGV4cGFuZCBvbiB0aGUgdXNlciBpbnRlcmZhY2UgYnkgY3JlYXRpbmcgc29tZSBkaWZmZXJlbnQgYXJlYXM6CgpgYGB7cn0KdWkgPC0gZmx1aWRQYWdlKAogIHRpdGxlUGFuZWwoInRpdGxlIHBhbmVsIiksCgogIHNpZGViYXJMYXlvdXQoCiAgICBzaWRlYmFyUGFuZWwoInNpZGViYXIgcGFuZWwiKSwKICAgIG1haW5QYW5lbCgibWFpbiBwYW5lbCIpCiAgKQopCgoKc2VydmVyIDwtIGZ1bmN0aW9uKGlucHV0LCBvdXRwdXQsIHNlc3Npb24pIHsgfSAKCnNoaW55QXBwKHVpID0gdWksIHNlcnZlciA9IHNlcnZlcikgCgpgYGAKClRyeSByZXBsaWNhdGluZyB0aGlzIGNvZGUgaW4gdGhlIGJveCBiZWxvdywgYnV0IGNoYW5nZSB0aGUgdGl0bGUgcGFuZWwgdG8gc2F5ICJIZWxsbyBXb3JsZCEiIGluc3RlYWQgb2YgInRpdGxlIHBhbmVsIgoKYGBge3J9CgpgYGAKCiMjIFN0eWxpbmcgdGhlIHVzZXIgaW50ZXJmYWNlIChVSSkKCldlIGNhbiBhZGQgY29udGVudCB0byBvdXIgU2hpbnkgYXBwIGJ5IGFkZGluZyB0ZXh0IHRvIG91ciBwYW5lbHMsIGFzIHlvdSd2ZSBqdXN0IGRvbmUgYnkgY2hhbmdpbmcgdGhlIGNvbnRlbnRzIG9mIHRoZSB0aXRsZSBwYW5lbC4gSW4gb3JkZXIgdG8gaGF2ZSBtb3JlIGNvbnRyb2wgb3ZlciB0aGUgYXBwZWFyYW5jZSBhbmQgZnVuY3Rpb25hbGl0eSBvZiBvdXIgY29udGVudCwgd2UgY2FuIGVtcGxveSBzb21lIGJhc2ljIEhUTUwgZWxlbWVudHMuIAoKSGVhZGluZ3MgYW5kIHBhcmFncmFwaHMgYXJlIHR3byBiYXNpYyBidXQgdmVyeSB1c2VmdWwgSFRNTCB0YWdzLgoKSGVhZGluZ3MgdGFncyByYW5nZSBmcm9tIGgxIHRvIGg2LCBoMSBiZWluZyB0aGUgbGFyZ2VzdC4gSGVhZGluZ3MgYXJlIGJvbGQgYnkgZGVmYXVsdCwgYXMgb3Bwb3NlZCB0byBwYXJhZ3JhcGhzLCB3aGljaCB3aWxsIGp1c3QgZGlzcGxheSByZWd1bGFyIHRleHQuIFRoZSBjb2RlIGJlbG93IHNob3dzIHRoZSBzeW50YXggZm9yIGFkZGluZyBoZWFkaW5ncyBhbmQgcGFyYWdyYXBocyB0byBhbiBhcHA6CgpgYGB7cn0KdWkgPC0gZmx1aWRQYWdlKAogIG1haW5QYW5lbCgKICAgIGgxKCJUaGlzIGlzIGFuIGgxIGhlYWRpbmciKSwKICAgIGgyKCJUaGlzIGlzIGFuIGgyIGhlYWRpbmciKSwKICAgIGgzKCJUaGlzIGlzIGFuIGgzIGhlYWRpbmciKSwKICAgIGg0KCJUaGlzIGlzIGFuIGg0IGhlYWRpbmciKSwKICAgIGg1KCJUaGlzIGlzIGFuIGg1IGhlYWRpbmciKSwKICAgIGg2KCJUaGlzIGlzIGFuIGg2IGhlYWRpbmciKSwKICAgICAgCiAgICBwKCJUaGlzIGlzIGEgcGFyYWdyYXBoIikKICApCikKCnNlcnZlciA8LSBmdW5jdGlvbihpbnB1dCwgb3V0cHV0LCBzZXNzaW9uKSB7IH0gCnNoaW55QXBwKHVpID0gdWksIHNlcnZlciA9IHNlcnZlcikgCmBgYAoKVHJ5IGNyZWF0aW5nIGFuIGgxIHRhZyBiZWxvdyB0aGF0IHNheXMgIkhlbGxvIFdvcmxkISIKCmBgYHtyfQp1aSA8LSBmbHVpZFBhZ2UoCiAgbWFpblBhbmVsKAogICAgIyBhZGQgeW91ciBjb2RlIGhlcmUKICAgIAogICkKKQoKc2VydmVyIDwtIGZ1bmN0aW9uKGlucHV0LCBvdXRwdXQsIHNlc3Npb24pIHsgfSAKc2hpbnlBcHAodWkgPSB1aSwgc2VydmVyID0gc2VydmVyKSAKYGBgCgoKV2UgY2FuIGFsc28gdXNlIGFuIEhUTUwgdGFnIHRvIGNyZWF0ZSBsaW5rcyBvbiBvdXIgU2hpbnkgYXBwLiBUaGUgY29kZSBiZWxvdyBzaG93cyB0aGUgc3ludGF4IGZvciBhZGRpbmcgYSBsaW5rOgoKYGBge3J9CnVpIDwtIGZsdWlkUGFnZSgKICAgIG1haW5QYW5lbCgKICAgICAgYSgiVGhpcyBpcyBhIGxpbmsiLCBocmVmPSJodHRwczovL3NoaW55LnJzdHVkaW8uY29tL3R1dG9yaWFsL3dyaXR0ZW4tdHV0b3JpYWwvbGVzc29uMS8iKQogICAgKQopCgpzZXJ2ZXIgPC0gZnVuY3Rpb24oaW5wdXQsIG91dHB1dCwgc2Vzc2lvbikgeyB9IApzaGlueUFwcCh1aSA9IHVpLCBzZXJ2ZXIgPSBzZXJ2ZXIpIApgYGAKClRyeSBjaGFuZ2luZyB0aGUgbGluayBiZWxvdyB0byByZWRpcmVjdCB0byBodHRwczovL3d3dy5sY2xhcmsuZWR1CgpgYGB7cn0KdWkgPC0gZmx1aWRQYWdlKAogICAgbWFpblBhbmVsKAogICAgICBhKCJUaGlzIGlzIGEgbGluayIsIGhyZWY9Imh0dHBzOi8vc2hpbnkucnN0dWRpby5jb20vdHV0b3JpYWwvd3JpdHRlbi10dXRvcmlhbC9sZXNzb24xLyIpCiAgICApCikKCnNlcnZlciA8LSBmdW5jdGlvbihpbnB1dCwgb3V0cHV0LCBzZXNzaW9uKSB7IH0gCnNoaW55QXBwKHVpID0gdWksIHNlcnZlciA9IHNlcnZlcikgCmBgYAoKCiMjIEFkZGluZyB1c2VyIGlucHV0cyB0byB0aGUgVUkKClRoZXJlIGFyZSBhIG51bWJlciBvZiB3aWRnZXRzIHdlIGNhbiBhZGQgdG8gb3VyIFNoaW55IGFwcCBmb3IgdXNlcnMgdG8gaW50ZXJhY3Qgd2l0aC4gRm9yIG5vdywgd2UnbGwgZGlzY3VzcyBhIGNvdXBsZSBvZiBiYXNpYyBleGFtcGxlczogdGhlIGRyb3Bkb3duIHNlbGVjdG9yIGFuZCB0aGUgc2xpZGVyIGlucHV0LgoKKipFeGFtcGxlIGNvZGUgZm9yIGEgZHJvcGRvd24gc2VsZWN0b3I6KioKYGBge3J9CnVpIDwtIGZsdWlkUGFnZSgKICBzaWRlYmFyUGFuZWwoCiAgICAKICAgIHNlbGVjdElucHV0KCJzZWxlY3QiLCBoNCgic2VsZWN0IGJveCIpLCAKICAgICAgICAgICAgICAgIGNob2ljZXMgPSBsaXN0KCJDaG9pY2UgMSIgPSAxLCAiQ2hvaWNlIDIiID0gMiwgIkNob2ljZSAzIiA9IDMpLCBzZWxlY3RlZCA9IDEpIAogICAgCiAgICAjIHRoZSAnc2VsZWN0ZWQnIG9wdGlvbiBkZWZpbmVzIHdoaWNoIG9wdGlvbiBpcyBzZWxlY3RlZCBieSBkZWZhdWx0CiAgKQopCgpzZXJ2ZXIgPC0gZnVuY3Rpb24oaW5wdXQsIG91dHB1dCwgc2Vzc2lvbikgeyB9IApzaGlueUFwcCh1aSA9IHVpLCBzZXJ2ZXIgPSBzZXJ2ZXIpIApgYGAKCk5vdyB0cnkgYWx0ZXJpbmcgdGhlIGNvZGUgYmVsb3cgc28gdGhlIGNob2ljZXMgcmVhZCAicmVkIiwgImJsdWUiLCBhbmQgInllbGxvdyIsIGFuZCBvcHRpb24gMyBpcyBzZWxlY3RlZCBieSBkZWZhdWx0OgpgYGB7cn0KdWkgPC0gZmx1aWRQYWdlKAogIHNpZGViYXJQYW5lbCgKCiAgICBzZWxlY3RJbnB1dCgic2VsZWN0IiwgaDQoInNlbGVjdCBib3giKSwgCiAgICAgICAgICAgICAgICBjaG9pY2VzID0gbGlzdCgiQ2hvaWNlIDEiID0gMSwgIkNob2ljZSAyIiA9IDIsICJDaG9pY2UgMyIgPSAzKSwgc2VsZWN0ZWQgPSAxKQogICkKKQoKc2VydmVyIDwtIGZ1bmN0aW9uKGlucHV0LCBvdXRwdXQsIHNlc3Npb24pIHsgfSAKc2hpbnlBcHAodWkgPSB1aSwgc2VydmVyID0gc2VydmVyKSAKYGBgCgoKKipFeGFtcGxlIGNvZGUgZm9yIGEgc2xpZGVyIGlucHV0OioqCmBgYHtyfQp1aSA8LSBmbHVpZFBhZ2UoCiAgc2lkZWJhclBhbmVsKAoKICAgIHNsaWRlcklucHV0KCJzbGlkZXIiLCBoNCgic2xpZGVyIiksIG1pbiA9IDAsIG1heCA9IDEwMCwgdmFsdWUgPSA1MCkKICAgIAogICAgIyB0aGUgJ3ZhbHVlJyBvcHRpb24gZGVmaW5lcyB0aGUgZGVmYXVsdCB2YWx1ZSBmb3IgdGhlIHNsaWRlcgogICkKKQoKc2VydmVyIDwtIGZ1bmN0aW9uKGlucHV0LCBvdXRwdXQsIHNlc3Npb24pIHsgfSAKc2hpbnlBcHAodWkgPSB1aSwgc2VydmVyID0gc2VydmVyKSAKYGBgCgpOb3cgdHJ5IGFsdGVyaW5nIHRoZSBjb2RlIGJlbG93IHNvIHRoZSBzbGlkZXIgcmFuZ2VzIGJldHdlZW4gNTAgYW5kIDUwMCwgYW5kIDEwMCBpcyB0aGUgZGVmYXVsdCB2YWx1ZToKYGBge3J9CnVpIDwtIGZsdWlkUGFnZSgKICBzaWRlYmFyUGFuZWwoCgogICAgc2xpZGVySW5wdXQoInNsaWRlciIsIGg0KCJzbGlkZXIiKSwgbWluID0gMCwgbWF4ID0gMTAwLCB2YWx1ZSA9IDUwKQogICkKKQoKc2VydmVyIDwtIGZ1bmN0aW9uKGlucHV0LCBvdXRwdXQsIHNlc3Npb24pIHsgfSAKc2hpbnlBcHAodWkgPSB1aSwgc2VydmVyID0gc2VydmVyKSAKYGBgCgoKCiMjIFBhc3NpbmcgZGF0YSBmcm9tIHRoZSB1c2VyIGlucHV0cyB0byB0aGUgbWFpbiBwYW5lbAoKCiMjIENyZWF0aW5nIGEgYmFzaWMgaGlzdG9ncmFtCgoKIyMgVXNpbmcgYSBkYXRhc2V0CgoKYGBge3J9CnVpIDwtIGZsdWlkUGFnZSgKICB0aXRsZVBhbmVsKCJNYWtlIGEgSGlzdG9ncmFtISIpLAogIAogIHNpZGViYXJMYXlvdXQoCiAgICBzaWRlYmFyUGFuZWwoCiAgICAgIGhlbHBUZXh0KCJBZGp1c3QgdGhlIHNsaWRlciB0byB1cGRhdGUgdGhlIGhpc3RvZ3JhbSIpLAoKICAgICAgCiAgICAgIHNsaWRlcklucHV0KCJyYW5nZSIsIAogICAgICAgICAgICAgICAgICBsYWJlbCA9ICJSYW5nZSBvZiBpbnRlcmVzdDoiLAogICAgICAgICAgICAgICAgICBtaW4gPSAxMCwgbWF4ID0gMTAwLCB2YWx1ZSA9IGMoMTApKQogICAgKSwKICAgIAogICAgbWFpblBhbmVsKAoKICAgICAgcGxvdE91dHB1dCgic2VsZWN0ZWRfcmFuZ2UiKQogICAgKQogICkKKQoKc2VydmVyIDwtIGZ1bmN0aW9uKGlucHV0LCBvdXRwdXQpIHsKICAKCiAgCiAgb3V0cHV0JHNlbGVjdGVkX3JhbmdlIDwtcmVuZGVyUGxvdCh7CiAgICBoaXN0KHJ1bmlmKGlucHV0JHJhbmdlWzFdKSwgbWFpbj0iaGVsbG8iLCB4bGFiPSJZb3VyIHNlbGVjdGVkIG51bWJlciIpCiAgIAoKICAgIAogIH0pCiAgCn0Kc2hpbnlBcHAodWkgPSB1aSwgc2VydmVyID0gc2VydmVyKSAKCmBgYAoKCgo=</div>
 
 
 
