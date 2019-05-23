@@ -80,9 +80,9 @@ Try replicating this code in the box below, but change the title panel to say "H
 
 We can add content to our Shiny app by adding text to our panels, as you've just done by changing the contents of the title panel. In order to have more control over the appearance and functionality of our content, we can employ some basic HTML elements. 
 
-Two basic but very useful HTML tags are headings and paragraphs.
+Headings and paragraphs are two basic but very useful HTML tags.
 
-Headings tags range from h1 to h6, h1 being the largest. Headings are bold by default, as opposed to paragraphs, which will just display regular text. The code below shows the syntax for adding headings and paragraphs to our app:
+Headings tags range from h1 to h6, h1 being the largest. Headings are bold by default, as opposed to paragraphs, which will just display regular text. The code below shows the syntax for adding headings and paragraphs to an app:
 
 ```{r}
 ui <- fluidPage(
@@ -101,7 +101,6 @@ ui <- fluidPage(
 server <- function(input, output, session) { } 
 shinyApp(ui = ui, server = server) 
 ```
-
 
 Try creating an h1 tag below that says "Hello World!"
 
@@ -146,6 +145,68 @@ shinyApp(ui = ui, server = server)
 
 
 ## Adding user inputs to the UI
+
+There are a number of widgets we can add to our Shiny app for users to interact with. For now, we'll discuss a couple of basic examples: the dropdown selector and the slider input.
+
+**Example code for a dropdown selector:**
+```{r}
+ui <- fluidPage(
+  sidebarPanel(
+    
+    selectInput("select", h4("select box"), 
+                choices = list("Choice 1" = 1, "Choice 2" = 2, "Choice 3" = 3), selected = 1) 
+    
+    # the 'selected' option defines which option is selected by default
+  )
+)
+
+server <- function(input, output, session) { } 
+shinyApp(ui = ui, server = server) 
+```
+
+Now try altering the code below so the choices read "red", "blue", and "yellow", and option 3 is selected by default:
+```{r}
+ui <- fluidPage(
+  sidebarPanel(
+
+    selectInput("select", h4("select box"), 
+                choices = list("Choice 1" = 1, "Choice 2" = 2, "Choice 3" = 3), selected = 1)
+  )
+)
+
+server <- function(input, output, session) { } 
+shinyApp(ui = ui, server = server) 
+```
+
+
+**Example code for a slider input:**
+```{r}
+ui <- fluidPage(
+  sidebarPanel(
+
+    sliderInput("slider", h4("slider"), min = 0, max = 100, value = 50)
+    
+    # the 'value' option defines the default value for the slider
+  )
+)
+
+server <- function(input, output, session) { } 
+shinyApp(ui = ui, server = server) 
+```
+
+Now try altering the code below so the slider ranges between 50 and 500, and 100 is the default value:
+```{r}
+ui <- fluidPage(
+  sidebarPanel(
+
+    sliderInput("slider", h4("slider"), min = 0, max = 100, value = 50)
+  )
+)
+
+server <- function(input, output, session) { } 
+shinyApp(ui = ui, server = server) 
+```
+
 
 
 ## Passing data from the user inputs to the main panel
