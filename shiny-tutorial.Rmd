@@ -1,6 +1,10 @@
 ---
 title: "Shiny - FTI 2019"
-output: html_notebook
+output:
+  html_document:
+    df_print: paged
+  html_notebook: default
+  pdf_document: default
 ---
 
 
@@ -86,16 +90,24 @@ Headings tags range from h1 to h6, h1 being the largest. Headings are bold by de
 
 ```{r}
 ui <- fluidPage(
-  mainPanel(
-    h1("This is an h1 heading"),
-    h2("This is an h2 heading"),
-    h3("This is an h3 heading"),
-    h4("This is an h4 heading"),
-    h5("This is an h5 heading"),
-    h6("This is an h6 heading"),
-      
-    p("This is a paragraph")
-  )
+
+  titlePanel("title panel"),
+
+  sidebarLayout(
+    sidebarPanel("sidebar panel"),
+    mainPanel(
+      h1("This is an h1 heading"),
+      h2("This is an h2 heading"),
+      h3("This is an h3 heading"),
+      h4("This is an h4 heading"),
+      h5("This is an h5 heading"),
+      h6("This is an h6 heading"),
+        
+      p("This is a paragraph")
+    )
+  )  
+  
+
 )
 
 server <- function(input, output, session) { } 
@@ -106,10 +118,14 @@ Try creating an h1 tag below that says "Hello World!"
 
 ```{r}
 ui <- fluidPage(
-  mainPanel(
-    # add your code here
-    
-  )
+  titlePanel("title panel"),
+
+  sidebarLayout(
+    sidebarPanel("sidebar panel"),
+    mainPanel(
+      # add your code here
+    )
+  ) 
 )
 
 server <- function(input, output, session) { } 
@@ -121,9 +137,16 @@ We can also use an HTML tag to create links on our Shiny app. The code below sho
 
 ```{r}
 ui <- fluidPage(
+
+  titlePanel("title panel"),
+
+  sidebarLayout(
+    sidebarPanel("sidebar panel"),
     mainPanel(
       a("This is a link", href="https://shiny.rstudio.com/tutorial/written-tutorial/lesson1/")
     )
+  )   
+  
 )
 
 server <- function(input, output, session) { } 
@@ -134,9 +157,16 @@ Try changing the link below to redirect to https://www.lclark.edu
 
 ```{r}
 ui <- fluidPage(
+
+  titlePanel("title panel"),
+
+  sidebarLayout(
+    sidebarPanel("sidebar panel"),
     mainPanel(
       a("This is a link", href="https://shiny.rstudio.com/tutorial/written-tutorial/lesson1/")
     )
+  )   
+  
 )
 
 server <- function(input, output, session) { } 
@@ -151,13 +181,22 @@ There are a number of widgets we can add to our Shiny app for users to interact 
 **Example code for a dropdown selector:**
 ```{r}
 ui <- fluidPage(
-  sidebarPanel(
-    
-    selectInput("select", h4("select box"), 
+
+  titlePanel("title panel"),
+
+  sidebarLayout(
+    sidebarPanel(
+      selectInput("select", h4("select box"), 
                 choices = list("Choice 1" = 1, "Choice 2" = 2, "Choice 3" = 3), selected = 1) 
     
     # the 'selected' option defines which option is selected by default
-  )
+    ),
+    mainPanel(
+      h1("my main panel")
+    )
+  ) 
+  
+
 )
 
 server <- function(input, output, session) { } 
@@ -167,10 +206,17 @@ shinyApp(ui = ui, server = server)
 Now try altering the code below so the choices read "red", "blue", and "yellow", and option 3 is selected by default:
 ```{r}
 ui <- fluidPage(
-  sidebarPanel(
+  titlePanel("title panel"),
 
-    selectInput("select", h4("select box"), 
-                choices = list("Choice 1" = 1, "Choice 2" = 2, "Choice 3" = 3), selected = 1)
+  sidebarLayout(
+    sidebarPanel(
+      selectInput("select", h4("select box"), 
+                choices = list("Choice 1" = 1, "Choice 2" = 2, "Choice 3" = 3), selected = 1) 
+    
+    ),
+    mainPanel(
+      h1("my main panel")
+    )
   )
 )
 
@@ -182,12 +228,20 @@ shinyApp(ui = ui, server = server)
 **Example code for a slider input:**
 ```{r}
 ui <- fluidPage(
-  sidebarPanel(
 
-    sliderInput("slider", h4("slider"), min = 0, max = 100, value = 50)
+  titlePanel("title panel"),
+
+  sidebarLayout(
+    sidebarPanel(
+      sliderInput("slider", h4("slider"), min = 0, max = 100, value = 50)
     
-    # the 'value' option defines the default value for the slider
-  )
+      # the 'value' option defines the default value for the slider
+    ),
+    mainPanel(
+      h1("my main panel")
+    )
+  )  
+  
 )
 
 server <- function(input, output, session) { } 
@@ -197,10 +251,20 @@ shinyApp(ui = ui, server = server)
 Now try altering the code below so the slider ranges between 50 and 500, and 100 is the default value:
 ```{r}
 ui <- fluidPage(
-  sidebarPanel(
 
-    sliderInput("slider", h4("slider"), min = 0, max = 100, value = 50)
-  )
+  titlePanel("title panel"),
+
+  sidebarLayout(
+    sidebarPanel(
+      sliderInput("slider", h4("slider"), min = 0, max = 100, value = 50)
+    
+      # the 'value' option defines the default value for the slider
+    ),
+    mainPanel(
+      h1("my main panel")
+    )
+  )  
+  
 )
 
 server <- function(input, output, session) { } 
@@ -216,31 +280,34 @@ In order to pass data from our user input to our display on the main panel, we h
 Here is an example of what that might look like:
 ```{r}
 ui <- fluidPage(
-  sidebarPanel(
-    # creating our dropdown and naming it 'dropdown1'
-    selectInput("dropdown1", h4("select box"), 
-                choices = list(
-                  "Choice 1" = 1, 
-                  "Choice 2" = 2, 
-                  "Choice 3" = 3,
-                  "Choice 4" = 4,
-                  "Choice 5" = 5
-                  ), 
-                selected = 1) # option 1 is selected by default
-  ),
-  
-  mainPanel(
-    # calling a function which we've written in the server function
-    h4( # function call is wrapped in h4 tags
-      textOutput("dropdown_selected") 
-      )
+  titlePanel("title panel"),
+  sidebarLayout(
+    sidebarPanel(
+      # creating our dropdown and naming it 'dropdown1'
+      selectInput("dropdown1", h4("select box"), 
+                  choices = list(
+                    "Choice 1" = 1, 
+                    "Choice 2" = 2, 
+                    "Choice 3" = 3,
+                    "Choice 4" = 4,
+                    "Choice 5" = 5
+                    ), 
+                  selected = 1) # option 1 is selected by default
+    ),
+    
+    mainPanel(
+      # calling a function which we've written in the server function
+      h4( # function call is wrapped in h4 tags
+        textOutput("dropdown_selected") 
+        )
+    )
   )
 )
 
 server <- function(input, output, session) {
     # function to display selected option
     output$dropdown_selected <- renderText({ 
-    paste("You have selected", input$dropdown1) # displaying current value of dropdown1
+      paste("You have selected", input$dropdown1) # displaying current value of dropdown1
   })
 } 
 shinyApp(ui = ui, server = server) 
