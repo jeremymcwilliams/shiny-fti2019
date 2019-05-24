@@ -275,7 +275,9 @@ shinyApp(ui = ui, server = server)
 
 ## Passing data from the user inputs to the main panel
 
-In order to pass data from our user input to our display on the main panel, we have to write a short subroutine in the server function, which handles the inputs and outputs for our app.
+In order to pass data from our user input to our display on the main panel, we need to do two things:
+* add an R object to the ui
+* write a short subroutine in the server function, which handles the inputs and outputs for our app
 
 Here is an example of what that might look like:
 ```{r}
@@ -298,6 +300,7 @@ ui <- fluidPage(
     mainPanel(
       # calling a function which we've written in the server function
       h4( # function call is wrapped in h4 tags
+        # here is the R object
         textOutput("dropdown_selected") 
         )
     )
@@ -313,6 +316,11 @@ server <- function(input, output, session) {
 shinyApp(ui = ui, server = server) 
 ```
 
+Notice that the value you specify in the textOutput function ("dropdown_selected") matches the value after the output$ in the server function. You can name it whatever you want, as long as they match.
+
+Similarly, notice that the same is true for the identifier of your ui selectInput ("dropdown1"). It matches the value after input$ in the server function.
+
+
 Now try copying the code into the box below and changing the output message to "Great job, you've selected" followed by the current value of 'dropdown1'
 ```{r}
 
@@ -322,7 +330,7 @@ If you need something else to do, try changing the main panel output to display 
 
 ## Creating a basic histogram
 
-
+Now we're going to branch out and plot a histogram with some user input. We'll use a sliderInput for our user input. Our R object in the mainPanel is "plotOutput", which is different from the "textOuput" function we used in the last example. Shiny provides a list of possible functions (here)[https://shiny.rstudio.com/tutorial/written-tutorial/lesson4/], depending upon what you want your output to be. Similarly, in our server function, we use "renderPlot" instead of "renderText". The previous link also provides a list of available functions for the server code. 
 
 
 
@@ -335,27 +343,25 @@ ui <- fluidPage(
       helpText("Adjust the slider to update the histogram"),
 
       
-      sliderInput("range", 
-                  label = "Range of interest:",
+      sliderInput("slider", 
+                  label = "Pick a value:",
                   min = 10, max = 100, value = c(10))
     ),
     
     mainPanel(
-
-      plotOutput("selected_range")
+      plotOutput("my_histogram")
     )
   )
 )
 
 server <- function(input, output) {
-  
 
-  
-  output$selected_range <-renderPlot({
-    hist(runif(input$range[1]), main="hello", xlab="Your selected number")
-   
+  output$my_histogram <-renderPlot({
+    # first define our input value from the slider as myNumber
+    myNumber<-input$slider[1]
+    #run the hist function. We're also adding the input value as part of the x-label value, using the paste function
+    hist(runif(myNumber), main="My Histogram", xlab=paste(myNumber, " total samples"))
 
-    
   })
   
 }
@@ -367,7 +373,7 @@ shinyApp(ui = ui, server = server)
 
 ## Using a dataset
 
-Now let's see if we can create a Shiny app that uses a dataset. We're going to use the publicly available dataset on alcohol consumption by country, from (fivethirtyeight's github repository)[https://github.com/fivethirtyeight/data/tree/master/alcohol-consumption]. This file is already loaded in our workspace, so run the following commands, and take a look at the dataframe:
+Now let's see if we can create a Shiny app that uses a dataset. We're going to use the publicly available dataset on alcohol consumption by country, from [fivethirtyeight's github repository](https://github.com/fivethirtyeight/data/tree/master/alcohol-consumption). This file is already loaded in our workspace, so run the following commands, and take a look at the dataframe:
 
 
 ```{r}
@@ -401,43 +407,53 @@ ui <- fluidPage(
   sidebarLayout(
     sidebarPanel(
       ("Data from the World Health Organization, 2010."),
+      
+      # in our select menu, we're using the code variable defined above
       selectInput("country", "Select a country",  choices=code)
     ),
     
     mainPanel(
-
-      plotOutput("selected_var")
+      plotOutput("selected_country")
     )
   )
 )
 
 server <- function(input, output) {
 
-
-  output$selected_var <- renderPlot({
-    mydata<-drinks %>% filter(drinks$country==input$country)
-    beer<-mydata$beer_servings
-    wine<-mydata$wine_servings
-    spirits<-mydata$spirit_servings
+  output$selected_country <- renderPlot({
+    # first get the table row (myData) in which the country value in the data table matches our input (user selected) country
+    myData<-drinks %>% filter(drinks$country==input$country)
+    
+    #get the specific values for each type of alcohol
+    beer<-myData$beer_servings
+    wine<-myData$wine_servings
+    spirits<-myData$spirit_servings
+    
+    #set the x-axis labels
     labels <- c("beer", "wine", "sprits")
-    barplot(c(beer, wine, spirits),names.arg=labels, main=input$country,  ylab="servings/year")
-    #hist(c(5,6,3), main=input$country, xlab="Your selected number")
-    #paste("You have selected", input$country)
+    
+    #generate the barplot
+    barplot(c(beer, wine, spirits),names.arg=labels, main=input$country,  ylab="servings/year", col="blue")
+
   })
-  
-#  output$selected_country <- renderText({ 
-#    paste("You have selected", input$val)
-#  })
- 
-   
-#  output$selected_range <-renderPlot({
-#    hist(runif(input$country), main="test", xlab="Your selected number")
-#  })
-  
+
 }
 shinyApp(ui = ui, server = server) 
 
 
 
 ```
+
+
+
+Now copy the code above and paste it below. Try editing it to do the following:
+* make a barplot with just a single bar: the total litres of pure alcohol 
+* change the bar color
+* use the paste() function to make a more descriptive plot title (hint: this is the "main" parameter)
+
+```{r}
+
+```
+
+
 
